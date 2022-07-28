@@ -35,8 +35,8 @@ jobs:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
         with:
           args:
-            -Dsonar.projectKey=${{ secrets.PROYECTKEY }}
-            -Dsonar.organization${{ secrets.ORGANIZATION }}
+              -Dsonar.projectKey= ${{ secrets.projectKey }}
+              -Dsonar.organization= ${{ secrets.organization }}
 
       - name: ZAP Scan
         uses: zaproxy/action-baseline@v0.5.0
