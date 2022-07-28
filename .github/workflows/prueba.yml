@@ -6,7 +6,7 @@ on:
   workflow_dispatch:
 
 jobs:
-  deploy:
+  OWASP_Dependency_Check:
     name: OWASP Dependency Check
     runs-on: ubuntu-latest
     environment: production
@@ -27,8 +27,8 @@ jobs:
         with:
           name: Depcheck report
           path: ${{github.workspace}}/reports
-
-scans:
+          
+  SonarCloud_Scan:
     name: SonarCloud Scan
     runs-on: ubuntu-latest
     steps:
