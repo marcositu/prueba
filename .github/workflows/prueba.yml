@@ -7,7 +7,7 @@ on:
 
 jobs:
   deploy:
-    name: Deploy
+    name: OWASP Dependency Check
     runs-on: ubuntu-latest
     environment: production
     steps:
@@ -28,6 +28,10 @@ jobs:
           name: Depcheck report
           path: ${{github.workspace}}/reports
 
+scans:
+    name: SonarCloud Scan
+    runs-on: ubuntu-latest
+    steps:
       - name: SonarCloud Scan
         uses: sonarsource/sonarcloud-github-action@master
         env:
@@ -35,8 +39,8 @@ jobs:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
         with:
           args:
-              -Dsonar.projectKey= ${{ secrets.projectKey }}
-              -Dsonar.organization= ${{ secrets.organization }}
+              -Dsonar.projectKey=marcositu_prueba
+              -Dsonar.organization=marcositu
 
       - name: ZAP Scan
         uses: zaproxy/action-baseline@v0.5.0
