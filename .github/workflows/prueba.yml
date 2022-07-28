@@ -42,9 +42,42 @@ jobs:
           args:
               -Dsonar.projectKey=marcositu_prueba
               -Dsonar.organization=marcositu
+ CodeQL:
+    needs: SonarCloud_Scan
+    name: ZAP Scan
+    runs-on: ubuntu-latest
+    steps:
+      - name: "CodeQL"
+    permissions:
+      actions: read
+      contents: read
+      security-events: write
+
+    strategy:
+      fail-fast: false
+      matrix:
+        language: [ 'javascript' ]
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v3
+
+    # Initializes the CodeQL tools for scanning.
+    - name: Initialize CodeQL
+      uses: github/codeql-action/init@v2
+      with:
+        languages: ${{ matrix.language }}
+        
+    # Autobuild attempts to build any compiled languages  (C/C++, C#, or Java).
+    # If this step fails, then you should remove it and run the build manually (see below)
+    - name: Autobuild
+      uses: github/codeql-action/autobuild@v2
+
+    - name: Perform CodeQL Analysis
+      uses: github/codeql-action/analyze@v2
 
   ZAP_Scan:
-    needs: SonarCloud_Scan
+    needs: CodeQL
     name: ZAP Scan
     runs-on: ubuntu-latest
     steps:
