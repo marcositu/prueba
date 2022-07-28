@@ -29,6 +29,7 @@ jobs:
           path: ${{github.workspace}}/reports
           
   SonarCloud_Scan:
+    needs: OWASP_Dependency_Check
     name: SonarCloud Scan
     runs-on: ubuntu-latest
     steps:
@@ -42,6 +43,11 @@ jobs:
               -Dsonar.projectKey=marcositu_prueba
               -Dsonar.organization=marcositu
 
+  ZAP_Scan:
+    needs: SonarCloud_Scan
+    name: ZAP Scan
+    runs-on: ubuntu-latest
+    steps:
       - name: ZAP Scan
         uses: zaproxy/action-baseline@v0.5.0
         with:
