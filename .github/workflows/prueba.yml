@@ -6,6 +6,21 @@ on:
   workflow_dispatch:
 
 jobs:
+
+
+  build:
+    name: Build
+    runs-on: ubuntu-latest
+    steps:
+    - name: executing remote ssh commands using password
+      uses: appleboy/ssh-action@master
+      with:
+        host: ${{ secrets.SERVER_IP }}
+        username: ${{ secrets.SERVER_USER }}
+        password: ${{ secrets.SERVER_PASS }}
+        port: ${{ secrets.SERVER_PORT }}
+        script: git clone https://github.com/OWASP/NodeGoat.git ; cd NodeGoat ; docker-compose build ; docker-compose up
+
   OWASP_Dependency_Check:
     name: OWASP Dependency Check
     runs-on: ubuntu-latest
@@ -77,4 +92,4 @@ jobs:
       - name: ZAP Scan
         uses: zaproxy/action-baseline@v0.5.0
         with:
-          target: 'http://testphp.vulnweb.com/'
+          target: ${{ secrets.SERVER_HTTP }}
