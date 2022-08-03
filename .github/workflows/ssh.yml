@@ -13,4 +13,4 @@ jobs:
         username: ${{ secrets.SERVER_USER }}
         password: ${{ secrets.SERVER_PASS }}
         port: ${{ secrets.SERVER_PORT }}
-        script: pwd
+        script: echo hola >> /tmp/hola.txt
