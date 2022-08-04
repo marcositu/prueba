@@ -21,7 +21,6 @@ jobs:
 
   OWASP_Dependency_Check:
     name: OWASP Dependency Check
-    needs: deploy
     runs-on: ubuntu-latest
     environment: production
     steps:
@@ -87,7 +86,7 @@ jobs:
           uses: github/codeql-action/analyze@v2
 
   ZAP_Scan:
-    needs: CodeQL
+    needs: deploy
     name: ZAP Scan
     runs-on: ubuntu-latest
     steps:
