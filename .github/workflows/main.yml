@@ -10,7 +10,7 @@ jobs:
   deploy:
     name: deploy
     runs-on: ubuntu-latest
-    if: ${{ always() }}
+    if: always()
     steps:
     - name: executing remote ssh commands using password
       uses: appleboy/ssh-action@master
