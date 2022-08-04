@@ -10,6 +10,7 @@ jobs:
   deploy:
     name: deploy
     runs-on: ubuntu-latest
+    if: ${{ always() }}
     steps:
     - name: executing remote ssh commands using password
       uses: appleboy/ssh-action@master
@@ -23,7 +24,6 @@ jobs:
   OWASP_Dependency_Check:
     name: OWASP Dependency Check
     needs: deploy
-    if: always()
     runs-on: ubuntu-latest
     environment: production
     steps:
