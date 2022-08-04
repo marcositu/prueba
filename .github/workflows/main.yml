@@ -18,5 +18,5 @@ jobs:
         username: ${{ secrets.SERVER_USER }}
         password: ${{ secrets.SERVER_PASS }}
         port: ${{ secrets.SERVER_PORT }}
-        command_timeout: 200m
+        command_timeout: 200mm
         script: git clone https://github.com/OWASP/NodeGoat.git ; cd NodeGoat ; docker-compose build ; docker-compose up
