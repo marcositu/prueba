@@ -110,7 +110,7 @@ jobs:
       - name: GitHub Workflow artifacts
         uses: actions/upload-artifact@v2
         with:
-          path: ${{github.workspace}}/reports
+          path: ${{github.workspace}}
           output: nuclei.txt
 
       - name: GitHub Security Dashboard Alerts update
