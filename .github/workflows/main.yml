@@ -23,6 +23,7 @@ jobs:
   OWASP_Dependency_Check:
     name: OWASP Dependency Check
     needs: deploy
+    if: always()
     runs-on: ubuntu-latest
     environment: production
     steps:
@@ -46,6 +47,7 @@ jobs:
   SonarCloud_Scan:
     needs: OWASP_Dependency_Check
     name: SonarCloud Scan
+    if: always()
     runs-on: ubuntu-latest
     steps:
       - name: SonarCloud Scan
@@ -60,6 +62,7 @@ jobs:
   CodeQL:
     needs: SonarCloud_Scan
     name: CodeQL
+    if: always()
     runs-on: ubuntu-latest
     strategy:
       fail-fast: false
@@ -87,6 +90,7 @@ jobs:
   ZAP_Scan:
     needs: CodeQL
     name: ZAP Scan
+    if: always()
     runs-on: ubuntu-latest
     steps:
       - name: ZAP Scan
