@@ -22,7 +22,7 @@ jobs:
 
   OWASP_Dependency_Check:
     name: OWASP Dependency Check
-	  needs: deploy
+    needs: deploy
     runs-on: ubuntu-latest
     environment: production
     steps:
