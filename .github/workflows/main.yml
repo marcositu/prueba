@@ -17,13 +17,11 @@ jobs:
         username: ${{ secrets.SERVER_USER }}
         password: ${{ secrets.SERVER_PASS }}
         port: ${{ secrets.SERVER_PORT }}
-        command_timeout: 20m
-        script: git clone https://github.com/OWASP/NodeGoat.git ; cd NodeGoat ; docker-compose build ; docker-compose up
+        script: git clone https://github.com/OWASP/NodeGoat.git ; cd NodeGoat ; docker-compose build ; screen -A -m -d -S screen_1 docker-compose up
 
   OWASP_Dependency_Check:
     name: OWASP Dependency Check
     needs: deploy
-    if: always()
     runs-on: ubuntu-latest
     environment: production
     steps:
@@ -47,7 +45,6 @@ jobs:
   SonarCloud_Scan:
     needs: OWASP_Dependency_Check
     name: SonarCloud Scan
-    if: always()
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
@@ -65,7 +62,6 @@ jobs:
   CodeQL:
     needs: SonarCloud_Scan
     name: CodeQL
-    if: always()
     runs-on: ubuntu-latest
     strategy:
       fail-fast: false
@@ -93,7 +89,6 @@ jobs:
   ZAP_Scan:
     needs: CodeQL
     name: ZAP Scan
-    if: always()
     runs-on: ubuntu-latest
     steps:
       - name: ZAP Scan
@@ -104,7 +99,6 @@ jobs:
   slack:
     needs: ZAP_Scan
     name: Slack Notification
-    if: always()
     runs-on: ubuntu-latest
     steps:
      - name: Slack Notification
