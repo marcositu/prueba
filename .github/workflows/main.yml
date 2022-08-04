@@ -1,18 +1,10 @@
-on:
-  push:
-    branches: [ main ]
-
-  # to run manually
-  workflow_dispatch:
-
+name: A workflow for ensuring credentials are not in file
+on: push
 jobs:
-  ZAP_Scan:
-    name: ZAP Scan
+  build:
+    name: Cred Checker
     runs-on: ubuntu-latest
-    steps:
-    - uses: actions/checkout@v2
-      with:
-        fetch-depth: 0
-        ref: ${{ github.head_ref }} // necessary for pull request workflow trigger
-    - name: trufflehog-actions-scan
-      uses: edplato/trufflehog-actions-scan@master
+    steps:        
+       - uses: actions/checkout@master
+       - name:  trufflehog-actions-scan
+         uses: edplato/trufflehog-actions-scan
