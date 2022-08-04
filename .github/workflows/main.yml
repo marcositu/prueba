@@ -97,7 +97,7 @@ jobs:
           
   nuclei-scan:
     needs: ZAP_Scan
-    name: Nuclei - DAST Scan
+    name: Nuclei Scan
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
@@ -107,14 +107,12 @@ jobs:
           target: ${{ secrets.SERVER_WEB }}
           flags: "-severity critical,high,medium,low -stats"
 
-      - name: GitHub Workflow artifacts
-        uses: actions/upload-artifact@v2
+      - name: Nuclei Upload Test results 
+        uses: actions/upload-artifact@master
         with:
-          path: .
-          output: nuclei.txt
-
-      - name: GitHub Security Dashboard Alerts update
-        uses: github/codeql-action/upload-sarif@v2
+          name: Nuclei report
+          path: ${{github.workspace}}/reports
+	        output: nuclei.txt
           
   slack:
     needs: nuclei-scan
