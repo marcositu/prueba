@@ -22,6 +22,7 @@ jobs:
         script: git clone https://github.com/OWASP/NodeGoat.git ; cd NodeGoat ; docker-compose build ; docker-compose up
 
   OWASP_Dependency_Check:
+    needs: build
     name: OWASP Dependency Check
     runs-on: ubuntu-latest
     environment: production
