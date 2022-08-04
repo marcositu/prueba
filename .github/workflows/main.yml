@@ -107,13 +107,12 @@ jobs:
           target: ${{ secrets.SERVER_WEB }}
           flags: "-severity critical,high,medium,low -stats"
 
-      - name: Nuclei Upload Test results 
-        uses: actions/upload-artifact@master
+      - name: GitHub Workflow artifacts
+        uses: actions/upload-artifact@v2
         with:
-          name: Nuclei report
-          path: ${{github.workspace}}/reports
-	        output: nuclei.txt
-          
+          name: nuclei.log
+          path: nuclei.log
+	  
   slack:
     needs: nuclei-scan
     name: Slack Notification
