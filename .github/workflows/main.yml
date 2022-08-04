@@ -96,6 +96,7 @@ jobs:
           target: ${{ secrets.SERVER_WEB }}
           
   nuclei-scan:
+    needs: ZAP_Scan
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
