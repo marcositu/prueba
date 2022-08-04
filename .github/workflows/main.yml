@@ -110,8 +110,8 @@ jobs:
       - name: GitHub Workflow artifacts
         uses: actions/upload-artifact@v2
         with:
-          name: nuclei.log
-          path: nuclei.log
+          name: nuclei.txt
+          path: nuclei.txt
 	  
   slack:
     needs: nuclei-scan
