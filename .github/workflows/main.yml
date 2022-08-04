@@ -111,7 +111,7 @@ jobs:
         uses: actions/upload-artifact@v2
         with:
           name: nuclei.log
-          path: nuclei.log
+          path: ${{github.workspace}}/reports
 
       - name: GitHub Security Dashboard Alerts update
         uses: github/codeql-action/upload-sarif@v2
