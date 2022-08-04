@@ -106,7 +106,7 @@ jobs:
        env:
           SLACK_CHANNEL: bounty
           SLACK_ICON: https://github.com/rtCamp.png?size=48
-          SLACK_MESSAGE: 'TERMINO EL PIPELINE'
-          SLACK_TITLE: APP UP
+          SLACK_MESSAGE: 'Corrio todo OK'
+          SLACK_TITLE: 'TERMINO EL PIPELINE'
           SLACK_USERNAME: test
           SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK }}
