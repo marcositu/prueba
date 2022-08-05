@@ -42,8 +42,8 @@ jobs:
           path: ${{github.workspace}}/reports
 		  
   slack:
-	needs: OWASP_Dependency_Check
-	name: Announce the release on Slack
+    needs: OWASP_Dependency_Check
+    name: Announce the release on Slack
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2.3.4
