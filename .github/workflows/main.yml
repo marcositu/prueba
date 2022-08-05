@@ -11,12 +11,11 @@ jobs:
       - uses: actions/checkout@v2.3.4
       - name: Get latest commit info
         run: |
-          echo "::set-output name=TITLE::$(git show -1 --format='%s' -s)"
           echo "::set-output name=BODY::$(curl -s -H "Accept: application/json" https://api.github.com/repos/marcositu/prueba/actions/artifacts?per_page=1 | grep archive_download_url)"
         id: latest_commit
       - uses: homeday-de/slack-release-bot-action@main
         with:
           webhook_url: ${{ secrets.SLACK_WEBHOOK }}
-          title: ${{ steps.latest_commit.outputs.TITLE }}
+          title: "OWASP Dependency Check"
           body: ${{ steps.latest_commit.outputs.BODY }}
           context: Website
