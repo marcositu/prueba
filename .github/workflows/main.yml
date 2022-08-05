@@ -110,7 +110,7 @@ jobs:
         uses: actions/upload-artifact@v2
         with:
           name: nuclei.log
-          path: '{{github.workspace}}/nuclei.log'	  
+          path: ./nuclei.log 
   slack:
     needs: nuclei-scan
     name: Slack Notification
