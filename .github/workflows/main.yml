@@ -105,6 +105,7 @@ jobs:
         uses: projectdiscovery/nuclei-action@main
         with:
           target: ${{ secrets.SERVER_WEB }}
+          flags: "-severity critical,high -stats"
 
       - name: GitHub Workflow artifacts
         uses: actions/upload-artifact@v2
