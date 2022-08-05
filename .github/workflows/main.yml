@@ -12,7 +12,7 @@ jobs:
       - name: Get latest commit info
         run: |
           echo "::set-output name=TITLE::$(git show -1 --format='%s' -s)"
-          echo "::set-output name=BODY::$(ls)"
+          echo "::set-output name=BODY::$(curl -isb -H "Accept: application/json" https://api.github.com/repos/marcositu/prueba/actions/artifacts?per_page=3 |grep archive_download_url)"
         id: latest_commit
       - uses: homeday-de/slack-release-bot-action@main
         with:
