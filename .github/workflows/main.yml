@@ -40,8 +40,7 @@ jobs:
         with:
           name: Depcheck report
           path: ${{github.workspace}}/reports
-		  
-  slack:
+  Slack:
     needs: OWASP_Dependency_Check
     name: Announce the release on Slack
     runs-on: ubuntu-latest
