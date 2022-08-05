@@ -21,5 +21,5 @@ jobs:
         with:
           webhook_url: ${{ secrets.SLACK_WEBHOOK }}
           title: "OWASP Dependency Check"
-          body: ${{ steps.my_string.outputs.content }}
+          body: ${{ steps.latest_commit.outputs.MY_STRING }}
           context: Website
