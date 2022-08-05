@@ -12,7 +12,7 @@ jobs:
       - name: Get latest commit info
         run: |
           echo "::set-output name=TITLE::$(git show -1 --format='%s' -s)"
-          echo "::set-output name=BODY::$(git show -1 --format='%b' -s)"
+          echo "::set-output name=BODY::$(ls)"
         id: latest_commit
       - uses: homeday-de/slack-release-bot-action@main
         with:
