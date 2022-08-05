@@ -1,0 +1,22 @@
+name: Announce the release on Slack
+
+on:
+  push:
+    branches: [main]
+    
+jobs:
+  slack:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2.3.4
+      - name: Get latest commit info
+        run: |
+          echo "::set-output name=TITLE::$(curl -s https://api.github.com/repos/marcositu/prueba/actions/artifacts?per_page=3 | jq '[.artifacts[] | {link: .archive_download_url}]')"
+          echo "::set-output name=BODY::$(git show -1 --format='%b' -s)"
+        id: latest_commit
+      - uses: homeday-de/slack-release-bot-action@main
+        with:
+          webhook_url: ${{ secrets.SLACK_WEBHOOK }}
+          title: ${{ steps.latest_commit.outputs.TITLE }}
+          body: ${{ steps.latest_commit.outputs.BODY }}
+          context: Website
