@@ -16,6 +16,6 @@ jobs:
       - uses: homeday-de/slack-release-bot-action@main
         with:
           webhook_url: ${{ secrets.SLACK_WEBHOOK }}
-          title: "PRUEBA"
+          title: PRUEBA
           body: ${{ steps.latest_commit.outputs.BODY }}
-          context: Website
+          context: Pipeline
